@@ -1,0 +1,35 @@
+Senior Project Progress
+2/14/13-
+	-4:00pm-
+	Researched project options and different tutorials
+	Looked into required setup for project
+	-9:00pm-
+2/17/13-
+	-12:00pm-
+	Set up virtual macine for testing on the development machine(so as to have the same hardware and easy access to the testbed)
+	Built GCC-Cross-Compiler
+	-3:00pm-
+2/19/13-
+	-12:00pm-
+	Built simple libraries for the GCC-Cross-Compiler
+	-2:00pm-
+2/20/13-
+	-2:30pm-
+	(Scrap GCC-Cross-Compiler progress)
+	Finish a Hello World printing kernel and run it on virtual machine.
+	-4:00pm-
+2/24/13-
+	-4:00pm-
+	Fix the many problems with the current version of the kernel by the tutorial from Bran.
+	-6:00pm-
+2/27/13-
+	-8:00pm-
+	Started working out finishing bugs on the "Hello, World!" kernel
+	Installed boch-x module which was missing
+	-10:00pm-
+2/28/13
+	-11:00am-
+	Finally have all things working seemingly, except for one issue between the current version of Ubuntu and Boch virtual machine
+	Fixed this problem by installing boch-sdl plugin.
+	Successfully produced the "Hello, World!" screen printing kernel
+	-3:00pm-
