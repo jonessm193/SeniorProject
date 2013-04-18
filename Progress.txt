@@ -33,3 +33,8 @@ Senior Project Progress
 	Fixed this problem by installing boch-sdl plugin.
 	Successfully produced the "Hello, World!" screen printing kernel
 	-3:00pm-
+4/17/13
+	-5:00pm-
+	Got some free time away from school to kick this back up
+	Implemented the GDT(Global Descriptor Table)
+	
