@@ -14,8 +14,10 @@ gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc
 
 gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o isrs.o isrs.c
 
+gcc -Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -fno-builtin -I./include -c -o irq.o irq.c
+
 echo Linking
-ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o
+ld -T link.ld -o kernel.bin start.o main.o scrn.o gdt.o idt.o isrs.o irq.o
 
 echo Placing kernel in floppy.img
 cat floppy/stage1 floppy/stage2 floppy/pad kernel.bin > floppy.img
