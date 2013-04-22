@@ -37,4 +37,6 @@ Senior Project Progress
 	-5:00pm-
 	Got some free time away from school to kick this back up
 	Implemented the GDT(Global Descriptor Table)
-	
+	Implemented the IDT(Interrupt Descriptor Table)
+	Received a crash from dividing by zero, showing that interrupts are indeed observed by the kernel, but not handled
+	-11:00pm-

@@ -51,6 +51,7 @@ void outportb (unsigned short _port, unsigned char _data){
 int main(){
     gdt_install();
     idt_install();
+    isrs_install();
     init_video();
     puts((unsigned char *)("Hello, World!\n Yes...that's all I do for now"));
     puts((unsigned char *)("WATCH ME DIE " + 15/0));
