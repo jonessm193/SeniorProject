@@ -54,6 +54,7 @@ int main(){
     isrs_install();
     irq_install();
     timer_install();
+    keyboard_install();
     puts((unsigned char*) "I'm causing an interrupt to occur, but you can't see it because that stuff works now.");
     __asm__ __volatile__ ("sti"); 
     init_video();

@@ -47,4 +47,7 @@ extern void irq_uninstall_handler(int irq);
 extern void timer_install();
 extern void timer_wait(int ticks);
 
+/*KB.C*/
+extern void keyboard_install();
+
 #endif

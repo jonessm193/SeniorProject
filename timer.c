@@ -18,7 +18,7 @@ void timer_handler(struct regs *r)
     *  display a message on the screen */
     if (timer_ticks % 36 == 0)
     {
-        puts((unsigned char*)"This is supposed to be one second...\n");
+        //puts((unsigned char*)"This is supposed to be one second...\n");
     }
 }
 
