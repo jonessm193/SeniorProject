@@ -43,4 +43,8 @@ extern void irq_install();
 extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
 extern void irq_uninstall_handler(int irq);
 
+/*TIMER.C*/
+extern void timer_install();
+extern void timer_wait(int ticks);
+
 #endif

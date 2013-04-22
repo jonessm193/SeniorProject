@@ -53,8 +53,10 @@ int main(){
     idt_install();
     isrs_install();
     irq_install();
+    timer_install();
+    puts((unsigned char*) "I'm causing an interrupt to occur, but you can't see it because that stuff works now.");
     __asm__ __volatile__ ("sti"); 
     init_video();
-    puts((unsigned char *)("Hello, World!\n Yes...that's all I do for now"));
+    puts((unsigned char *)("Now the PIT will count for you!"));
     for (;;);
 }
