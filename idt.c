@@ -1,3 +1,5 @@
+//Coded mostly myself using gdt.c as a template, filling in differing attributes where needed
+
 #include <system.h>
 
 /* Defines an IDT entry */

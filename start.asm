@@ -1,3 +1,7 @@
+;Most code taken from tutorials unless otherwise mentioned
+;Most sections had some modifications by myself or fill in methods
+
+
 ; This is the kernel's entry point. We could either call main here,
 ; or we can use this to setup the stack or other nice stuff, like
 ; perhaps setting up the GDT and segments. Please note that interrupts
@@ -66,8 +70,8 @@ idt_load:
     lidt [idtp]
     ret
 
-; In just a few pages in this tutorial, we will add our Interrupt
-; Service Routines (ISRs) right here!
+;Done by SJones
+; Interrupt Service Routines (ISRs) right here!
 global isr0
 global isr1
 global isr2
@@ -104,8 +108,7 @@ global isr31
 ;  0: Divide By Zero Exception
 isr0:
     cli
-    push byte 0    ; A normal ISR stub that pops a dummy error code to keep a
-                   ; uniform stack frame
+    push byte 0
     push byte 0
     jmp isr_common_stub
 
@@ -161,9 +164,7 @@ isr7:
 ;  8: Double Fault Exception (With Error Code!)
 isr8:
     cli
-    push byte 8        ; Note that we DON'T push a value on the stack in this one!
-                   ; It pushes one already! Use this type of stub for exceptions
-                   ; that pop error codes!
+    push byte 8 
     jmp isr_common_stub
 
 ;  9: Coprocessor Segment Overrun Exception
@@ -355,6 +356,9 @@ isr_common_stub:
 
 
 
+;IRQ section
+;Done by SJones
+
 global irq0
 global irq1
 global irq2
@@ -375,8 +379,7 @@ global irq15
 ; 32: IRQ0
 irq0:
     cli
-    push byte 0    ; Note that these don't push an error code on the stack:
-                   ; We need to push a dummy error code
+    push byte 0
     push byte 32
     jmp irq_common_stub
 
@@ -512,6 +515,38 @@ irq_common_stub:
     popa
     add esp, 8
     iret
+
+
+;This is where we start out memory management section
+;Coded by SJones
+
+global read_cr0
+read_cr0:
+    mov eax, cr0
+    retn
+
+global write_cr0
+write_cr0:
+    push ebp
+    mov ebp, esp
+    mov eax, [ebp+8]
+    mov cr0,  eax
+    pop ebp
+    retn
+
+global read_cr3
+read_cr3:
+    mov eax, cr3
+    retn
+
+global write_cr3
+write_cr3:
+    push ebp
+    mov ebp, esp
+    mov eax, [ebp+8]
+    mov cr3, eax
+    pop ebp
+    retn
 
 ; Here is the definition of our BSS section. Right now, we'll use
 ; it just to store the stack. Remember that a stack actually grows

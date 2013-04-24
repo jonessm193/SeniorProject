@@ -1,3 +1,5 @@
+//Coded entirely by SJones wit logic help from Bran's Tutorial
+
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 
@@ -49,5 +51,8 @@ extern void timer_wait(int ticks);
 
 /*KB.C*/
 extern void keyboard_install();
+
+/*PAGING.C*/
+extern void paging_install();
 
 #endif

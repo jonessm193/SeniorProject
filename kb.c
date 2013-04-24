@@ -1,3 +1,5 @@
+//Copied most from Bran's Tutorial
+
 #include <system.h>
 
 /* KBDUS means US Keyboard Layout. This is a scancode table

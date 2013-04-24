@@ -1,3 +1,5 @@
+//Copied most from Bran's Kernel Dev Tutorial
+
 #include <system.h>
 
 /* These define our textpointer, our background and foreground

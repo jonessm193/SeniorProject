@@ -1,3 +1,4 @@
+//Mostly coded by SJones(fixed many methods and the main) but a lot taken from the tutorial
 
 #include <system.h>
 
@@ -55,6 +56,7 @@ int main(){
     irq_install();
     timer_install();
     keyboard_install();
+    paging_install();
     __asm__ __volatile__ ("sti"); 
     init_video();
     puts((unsigned char *)("I CAN TYPE NOW!!!\n"));

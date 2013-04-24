@@ -1,3 +1,5 @@
+//Coded mostly by SJones
+
 #include <system.h>
 
 /* This will keep track of how many ticks that the system
@@ -16,10 +18,10 @@ void timer_handler(struct regs *r)
 
     /* Every 18 clocks (approximately 1 second), we will
     *  display a message on the screen */
-    if (timer_ticks % 36 == 0)
-    {
+    //if (timer_ticks % 180 == 0)
+    //{
         //puts((unsigned char*)"This is supposed to be one second...\n");
-    }
+    //}
 }
 
 /* This will continuously loop until the given time has

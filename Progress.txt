@@ -40,3 +40,19 @@ Senior Project Progress
 	Implemented the IDT(Interrupt Descriptor Table)
 	Received a crash from dividing by zero, showing that interrupts are indeed observed by the kernel, but not handled
 	-11:00pm-
+4/21/13
+	-8:00pm-
+	Work on implementing Interrupts properly
+	ISR IRQ work
+	IRQs successfully handled
+	Keyboard captured and translated to ASCII, then printed to screen
+	-12:00am-
+4/23/13
+	-6:00pm-
+	Begin research into memory management strategies and implementations
+	
+
+
+
+
+

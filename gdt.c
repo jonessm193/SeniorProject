@@ -1,3 +1,5 @@
+//Coded by SJones with great assistance from Bran's Tutorial
+
 #include <system.h>
 
 /* Defines a GDT entry. We say packed, because it prevents the
