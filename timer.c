@@ -17,7 +17,10 @@ void timer_handler(struct regs *r)
     timer_ticks++;
 
     /* Every 18 clocks (approximately 1 second), we will
-    *  display a message on the screen */
+    *  display a message on the screen 
+    *    This does not work at all like it's supposed to
+    *    Need to find the correct timing to get any sort
+    *    of timing functionality*/
     //if (timer_ticks % 180 == 0)
     //{
         //puts((unsigned char*)"This is supposed to be one second...\n");

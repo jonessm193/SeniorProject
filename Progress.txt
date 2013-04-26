@@ -50,6 +50,16 @@ Senior Project Progress
 4/23/13
 	-6:00pm-
 	Begin research into memory management strategies and implementations
+	Start implementation
+	-8:00pm-
+4/24/13
+	-5:00-
+	Successfully implemented Memory Management, paging
+	Fairly granular as it does 4kb chunks and also is pretty basic
+	-6:30-
+4/26/13
+	-3:00pm-
+	Begin research and implementation of a file system
 	
 
 
