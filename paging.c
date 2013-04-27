@@ -28,7 +28,7 @@ void paging_install(){
 	// write_cr3, read_cr3, write_cr0, and read_cr0 all come from the assembly functions
 	write_cr3(page_directory); // put that page directory address into CR3
 	write_cr0(read_cr0() | 0x80000000); // set the paging bit in CR0 to 1
-
+	
 	// I thought it'd be a lot harder to implement,
 	// but most architectures now have memory management units built in apparently.
 }
