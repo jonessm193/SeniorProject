@@ -13,6 +13,7 @@ extern unsigned short *memsetw(unsigned short *dest, unsigned short val, int cou
 extern int strlen(const char *str);
 extern unsigned char inportb(unsigned short _port);
 extern void outportb(unsigned short _port, unsigned char _data);
+extern void panic(unsigned char * message);
 
 /*SCRN.C */
 extern void cls();
@@ -44,6 +45,7 @@ extern void isrs_install();
 extern void irq_install();
 extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
 extern void irq_uninstall_handler(int irq);
+extern unsigned int irq_wait(unsigned int num);
 
 /*TIMER.C*/
 extern void timer_install();
@@ -54,5 +56,13 @@ extern void keyboard_install();
 
 /*PAGING.C*/
 extern void paging_install();
+
+/*DETECTFLOPPY.C*/
+extern void detectfloppy();
+
+/*FDC.C*/
+extern unsigned int f_read_track(unsigned cyl);
+extern unsigned int f_write_track(unsigned cyl);
+extern void fdc_install();
 
 #endif

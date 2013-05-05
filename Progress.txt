@@ -60,7 +60,28 @@ Senior Project Progress
 4/26/13
 	-3:00pm-
 	Begin research and implementation of a file system
-	
+	Choosing a 4kb block size
+	Well...just about accomplised nothing, aside for understanding everything about how a file system works
+	I have absolutely nothing implemented for the file system as I'm still unsure how to go about it
+	That being said I have a wonderful mental map of how it would be set up
+	-9:00pm-
+5/1/13
+	-11:00am-
+	More looking into where to start my file system progress, osdever.net is helpful
+	-2:00pm-
+5/4/13
+	-1:30pm-
+	Really cracking down to try and get my FDC(Floppy Disk Controller) implemented, so I can then create a file system
+	Attempting to get all that done and also some simple commands to create and move files around
+	FDC supposedly done, but upon successful compilation and my attempt to load the kernel, GRUB spits back an error
+	Error is related to it being incorrectly formatted apparently
+	Fixed my problem. My kernel now links the assembly in ELF 32bit format i386. This made it a bit larger
+	This solved my issues though with my file size exceeding the binary version of the kernel formats allowance apparently
+	FDC is looking to be implemented and working. I will make calls to it for testing later.
+	-9:00pm-
+
+
+
 
 
 

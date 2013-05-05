@@ -48,6 +48,9 @@ void outportb (unsigned short _port, unsigned char _data){
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (_port), "a" (_data));
 }
 
+void panic(unsigned char * message){
+    puts(message);
+}
 
 int main(){
     gdt_install();
@@ -59,7 +62,8 @@ int main(){
     paging_install();
     __asm__ __volatile__ ("sti"); 
     init_video();
-    puts((unsigned char *)("I CAN TYPE NOW!!!\n"));
+    detectfloppy();
+    fdc_install();
     /* Uncomment to test that paging is really on and working*/
     //puts((unsigned char*) ("test page fault: %d \n", *(( unsigned int *)0xA0000000 )));
     for (;;);

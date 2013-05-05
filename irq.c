@@ -2,6 +2,9 @@
 
 #include <system.h>
 
+//Keep track of the last interrupt to have occured
+unsigned int irqCurr = -1;
+
 /* These are own ISRs that point to our special IRQ handler
 *  instead of the regular 'fault_handler' function */
 extern void irq0();
@@ -20,6 +23,16 @@ extern void irq12();
 extern void irq13();
 extern void irq14();
 extern void irq15();
+
+
+//Method to wait until a certain interrupt occurs
+unsigned int irq_wait(unsigned int num){
+    if(num == irqCurr){
+        return 1;
+        irqCurr = -1;
+    }
+    return 0;
+}
 
 /* This array is actually an array of function pointers. We use
 *  this to handle custom IRQ handlers for a given IRQ */
@@ -106,6 +119,7 @@ void irq_handler(struct regs *r)
     /* Find out if we have a custom handler to run for this
     *  IRQ, and then finally, run it */
     handler = irq_routines[r->int_no - 32];
+    irqCurr = (unsigned int)(irq_routines[r->int_no - 32]);
     if (handler)
     {
         handler(r);

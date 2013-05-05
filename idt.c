@@ -31,7 +31,7 @@ struct idt_ptr idtp;
 extern void idt_load();
 
 /* Use this function to set an entry in the IDT. Alot simpler
-*  than twiddling with the idt ;) */
+*  than twiddling with the idt */
 void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags)
 {
     /* Setup the routine's base address */
