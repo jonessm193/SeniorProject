@@ -1,6 +1,9 @@
 //Copied most from Bran's Tutorial
+//Modified to use my control.c code to implement terminal type command ability
 
 #include <system.h>
+
+unsigned int pullChars = 0;
 
 /* KBDUS means US Keyboard Layout. This is a scancode table
 *  used to layout a standard US keyboard. I have left some
@@ -68,15 +71,14 @@ void keyboard_handler(struct regs *r)
         *  hold a key down, you will get repeated key press
         *  interrupts. */
 
-        /* Just to show you how this works, we simply translate
-        *  the keyboard scancode into an ASCII value, and then
-        *  display it to the screen. You can get creative and
-        *  use some flags to see if a shift is pressed and use a
-        *  different layout, or you can add another 128 entries
-        *  to the above layout to correspond to 'shift' being
-        *  held. If shift is held using the larger lookup table,
-        *  you would add 128 to the scancode when you look for it */
+        /* I push the key to the screen, then pass it to my controller
+        *  to tell me when a command is made. This is essentially my
+        *  terminal now.*/
         putch(kbdus[scancode]);
+        if(pullChars == 0)
+          control_key(kbdus[scancode]);
+        else if(pullChars == 1)
+          writefilem(kbdus[scancode]);
     }
 }		
 

@@ -63,7 +63,7 @@ int main(){
     __asm__ __volatile__ ("sti"); 
     init_video();
     detectfloppy();
-    fdc_install();
+    //fdc_install();
     /* Uncomment to test that paging is really on and working*/
     //puts((unsigned char*) ("test page fault: %d \n", *(( unsigned int *)0xA0000000 )));
     for (;;);

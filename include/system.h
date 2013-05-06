@@ -53,6 +53,7 @@ extern void timer_wait(int ticks);
 
 /*KB.C*/
 extern void keyboard_install();
+extern unsigned int pullChars;
 
 /*PAGING.C*/
 extern void paging_install();
@@ -64,5 +65,9 @@ extern void detectfloppy();
 extern unsigned int f_read_track(unsigned cyl);
 extern unsigned int f_write_track(unsigned cyl);
 extern void fdc_install();
+
+/*CONTROL.C*/
+extern void control_key(char input);
+extern void writefilem(char finput);
 
 #endif
