@@ -1,3 +1,8 @@
+/* SJones
+	Floppy Disk Detection
+	Somewhat unecessary in this regard as we know what type of floppy we are using
+*/
+
 #include <system.h>
 
 void detectfloppy(){

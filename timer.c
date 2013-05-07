@@ -6,14 +6,10 @@
 *  has been running for */
 int timer_ticks = 0;
 
-/* Handles the timer. In this case, it's very simple: We
-*  increment the 'timer_ticks' variable every time the
-*  timer fires. By default, the timer fires 18.222 times
-*  per second. Why 18.222Hz? Some engineer at IBM must've
-*  been smoking something funky */
+//Handles the timer
 void timer_handler(struct regs *r)
 {
-    /* Increment our 'tick count' */
+    //Increment our 'tick count'
     timer_ticks++;
 
     /* Every 18 clocks (approximately 1 second), we will

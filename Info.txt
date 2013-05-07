@@ -1,3 +1,23 @@
+To build:
+Have GCC, NASM, and LD
+Have Bochs i386 virtual machine software
+Run the build.bat file
+Run Bochs in the main directory
+Tell GRUB where the kernel lives on the virutal floppy.img as well as the size but typing "kernel = 200+42"(size is subject to change)
+Type "boot"
+The kernel is now running fully from the virtual floppy
+
+Current Features:
+Screen Access
+GDT(Global Descriptor Table)
+IDT(Interrupt Descriptor Table) and ISRs (Interrupt Service Routines)(Kinda)
+Interrupt Requests are handled somewhat properly
+Keyboard access(only lower case and no specialty keys like alt, ctrl, etc.)
+Memory Management through paging done by the MMU
+Floppy Disk detection(If we ran on a system other than the one were we know the 'hardware')
+FDC(Floppy Disk Controller), although it's not currently hooked to anything
+The kernel boots into a screen which allows commands to be entered(very limited)
+
 Senior Project Progress
 2/14/13-
 	-4:00pm-

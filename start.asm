@@ -62,7 +62,7 @@ gdt_flush:
 flush2:
     ret               ; Returns back to the C code!
 
-; Loads the IDT defined in '_idtp' into the processor.
+; Loads the IDT defined in 'idtp' into the processor.
 ; This is declared in C as 'extern void idt_load();'
 global idt_load
 extern idtp
@@ -71,7 +71,7 @@ idt_load:
     ret
 
 ;Done by SJones
-; Interrupt Service Routines (ISRs) right here!
+;ISRs (Interrupt Service Routines)
 global isr0
 global isr1
 global isr2
@@ -323,8 +323,7 @@ isr31:
     push byte 31
     jmp isr_common_stub
 
-; We call a C function in here. We need to let the assembler know
-; that 'fault_handler' exists in another file
+
 extern fault_handler
 
 ; This is our common ISR stub. It saves the processor state, sets
@@ -491,7 +490,7 @@ irq15:
 extern irq_handler
 
 ; This is a stub that we have created for IRQ based ISRs. This calls
-; '_irq_handler' in our C code. We need to create this in an 'irq.c'
+; 'irq_handler' in my C code.
 irq_common_stub:
     pusha
     push ds
@@ -548,10 +547,7 @@ write_cr3:
     pop ebp
     retn
 
-; Here is the definition of our BSS section. Right now, we'll use
-; it just to store the stack. Remember that a stack actually grows
-; downwards, so we declare the size of the data before declaring
-; the identifier '_sys_stack'
+
 SECTION .bss
     resb 8192               ; This reserves 8KBytes of memory here
 _sys_stack:

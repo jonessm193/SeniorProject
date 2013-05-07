@@ -1,4 +1,4 @@
-//Coded entirely by SJones wit logic help from Bran's Tutorial
+//Link all methods/globals
 
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
