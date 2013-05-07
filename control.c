@@ -21,6 +21,14 @@ void filem(){
 	pullChars = 1;
 }
 
+void faces(){
+	puts((unsigned char*)("^_^ "));
+	puts((unsigned char*)("^_~ "));
+	puts((unsigned char*)(">_< "));
+	puts((unsigned char*)("-_- "));
+	puts((unsigned char*)("O_o\n"));
+}
+
 void control_enterCommand(){
 	if(compare(cmdString, (unsigned char*)"hello")){
 		puts((unsigned char*)("My controller for simple terminal commands is working!\n"));
@@ -30,6 +38,8 @@ void control_enterCommand(){
 		filem();
 	}else if(cmdString[0] == 0){
 		puts((unsigned char*)("\n"));
+	}else if(compare(cmdString, (unsigned char*)("faces"))){
+		faces();
 	}else{
 		puts((unsigned char*)("Unknown command\n"));
 	}
@@ -41,6 +51,7 @@ void control_enterCommand(){
 }
 
 void writefilem(char finput){
+	f_write_track(1);
 	puts((unsigned char*)("Derpa derpa derpa\n"));
 	filedone();
 	control_enterCommand();

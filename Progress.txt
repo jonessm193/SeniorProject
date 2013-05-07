@@ -35,7 +35,7 @@ Senior Project Progress
 	-3:00pm-
 4/17/13
 	-5:00pm-
-	Got some free time away from school to kick this back up
+	Got some time to kick this back up
 	Implemented the GDT(Global Descriptor Table)
 	Implemented the IDT(Interrupt Descriptor Table)
 	Received a crash from dividing by zero, showing that interrupts are indeed observed by the kernel, but not handled
@@ -53,10 +53,10 @@ Senior Project Progress
 	Start implementation
 	-8:00pm-
 4/24/13
-	-5:00-
+	-5:00pm-
 	Successfully implemented Memory Management, paging
 	Fairly granular as it does 4kb chunks and also is pretty basic
-	-6:30-
+	-6:30pm-
 4/26/13
 	-3:00pm-
 	Begin research and implementation of a file system
@@ -84,12 +84,13 @@ Senior Project Progress
 	Work on getting some form of terminal command in order to make calls to a file system
 	Weird errors where the simple act of printing something on the screen is causing print code from my FDC to come out...
 	Successfully have some pseudo commands working like a terminal. There are limits to this.
-	
+	No file system. Issues with the FDC.
+	-8:00pm-
 
 
 
 
-
+Hours total: 56.5
 
 
 

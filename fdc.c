@@ -7,6 +7,8 @@
 
 #include <system.h>
 
+unsigned int baseFAddress = 300;
+
 //Floppy register addresses to be accessed
 enum FloppyRegisters{
 	F_BASE 			= 0x3F0, //Base address for FDC
@@ -244,6 +246,7 @@ static void f_dma_init(f_dir dir){
 unsigned int f_do_track(unsigned cyl, f_dir dir){
 	//transfer command
 	unsigned char cmd;
+	puts((unsigned char*)("Start"));
 
 	//we're doing multitrack and keeping everything hardcoded to that to keep it simple
 	static const int flags = 0xC0;
@@ -258,12 +261,14 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 			panic((unsigned char*)("f_do_track: invalid direction"));
 			return 0;
 	}
+	puts((unsigned char*)("After switch"));
 
 	if(f_seek(cyl, 0)) return -1;
 	if(f_seek(cyl, 0)) return -1;
-
+	puts((unsigned char*)("Before loop"));
 	unsigned int i;
 	for(i = 0; i < 20; i++){
+		puts((unsigned char*)("Start loop"));
 		f_motor(f_motor_on);
 
 		f_dma_init(dir);
@@ -286,7 +291,7 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 			irq_wait(6);
 		}
 		
-
+		puts((unsigned char*)("Reading data?"));
 		unsigned char st0, st1, st2, rcy, rhe, rse, bps;
 		st0 = f_readData();
 		st1 = f_readData();
