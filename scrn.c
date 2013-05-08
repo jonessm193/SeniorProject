@@ -115,6 +115,7 @@ void putch(unsigned char c)
         where = textmemptr + (csr_y * 80 + csr_x);
         *where = c | att;	/* Character AND attributes: color */
         csr_x++;
+        outportb(0xE9, c);
     }
 
     /* If the cursor has reached the edge of the screen's width, we

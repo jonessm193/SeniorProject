@@ -78,7 +78,9 @@ void keyboard_handler(struct regs *r)
         if(pullChars == 0)
           control_key(kbdus[scancode]);
         else if(pullChars == 1)
-          writefilem(kbdus[scancode]);
+          writefile(kbdus[scancode]);
+        else if(pullChars == 2)
+          readfile();
     }
 }		
 

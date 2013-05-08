@@ -5,6 +5,7 @@
 /* This will keep track of how many ticks that the system
 *  has been running for */
 int timer_ticks = 0;
+int stupid = 0;
 
 //Handles the timer
 void timer_handler(struct regs *r)

@@ -46,6 +46,7 @@ extern void irq_install();
 extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
 extern void irq_uninstall_handler(int irq);
 extern unsigned int irq_wait(unsigned int num);
+extern unsigned int irqCurr;
 
 /*TIMER.C*/
 extern void timer_install();
@@ -64,10 +65,10 @@ extern void detectfloppy();
 /*FDC.C*/
 extern unsigned int f_read_track(unsigned cyl);
 extern unsigned int f_write_track(unsigned cyl);
-extern void fdc_install();
 
 /*CONTROL.C*/
 extern void control_key(char input);
-extern void writefilem(char finput);
+extern void writefile(char finput);
+extern void readfile();
 
 #endif

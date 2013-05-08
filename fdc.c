@@ -47,22 +47,24 @@ static volatile int f_motor_state = 0;
 void f_writeCommand(unsigned char cmd){
 	unsigned int i;
 	for(i = 0; i < 600; i++){
-		timer_wait(1);
-		if(0x80 & inportb(F_MSR))
+		//timer_wait(1);
+		if(0x80 & inportb(F_MSR)){
+			//puts((unsigned char*)("About to push the command to the FIFO\n"));
 			return (void) outportb(F_FIFO, cmd);
+		}
 	}
-	panic((unsigned char*)("f_writeCommand: timeout"));
+	panic((unsigned char*)("f_writeCommand: timeout\n"));
 }
 
 //read data when ready
 unsigned char f_readData(){
 	unsigned int i;
 	for(i = 0; i < 600; i++){
-		timer_wait(1);
+		//timer_wait(1);
 		if(0x80 & inportb(F_MSR))
 			return inportb(F_FIFO);
 	}
-	panic((unsigned char*)("f_readData: timout"));
+	panic((unsigned char*)("f_readData: timeout\n"));
 	return 0; //not reached
 }
 
@@ -79,7 +81,7 @@ void f_motor(unsigned int onoff){
 		if(!f_motor_state){
 			//then it needs to be on
 			outportb(F_DOR, 0x1C);
-			timer_wait(50);
+			//timer_wait(10);
 		}
 		f_motor_state = f_motor_on;
 	}else{
@@ -103,7 +105,7 @@ unsigned int f_calibrate(){
 
 		unsigned int j;
 		for(j = 0; j < 100; j++){
-			timer_wait(1);
+			//timer_wait(1);
 			irq_wait(6);
 		}
 		f_checkInterrupt(&st0, &cyl);
@@ -133,7 +135,7 @@ unsigned int f_reset(){
 
 	unsigned int j;
 	for(j = 0; j < 100; j++){
-			timer_wait(1);
+			//timer_wait(1);
 			irq_wait(6);
 	}
 		
@@ -159,17 +161,20 @@ unsigned int f_reset(){
 
 unsigned int f_seek(unsigned cyli, unsigned int head){
 	unsigned i, st0, cyl = -1;
+	puts((unsigned char*)("f_seek\n"));
 
 	f_motor(f_motor_on);
 
 	for(i = 0; i < 10; i++){
+		puts((unsigned char*)("Starting seek\n"));
 		f_writeCommand(SEEK);
 		f_writeCommand(head<<2);
 		f_writeCommand(cyli);
 
 		unsigned int j;
+		//puts((unsigned char*)("Checking for Interrupt f_seek\n"));
 		for(j = 0; j < 100; j++){
-			timer_wait(1);
+			//timer_wait(1);
 			irq_wait(6);
 		}
 		
@@ -183,6 +188,7 @@ unsigned int f_seek(unsigned cyli, unsigned int head){
 		}
 
 		if(cyl == cyli){
+			puts((unsigned char*)("I'm here!\n"));
 			f_motor(f_motor_off);
 			return 0;
 		}
@@ -222,7 +228,7 @@ static void f_dma_init(f_dir dir){
 	switch(dir){
 		case f_dir_read: mode = 0x46; break;
 		case f_dir_write: mode = 0x4A; break;
-		default: panic((unsigned char*)("f_dma_init: invalid direction"));
+		default: panic((unsigned char*)("f_dma_init: invalid direction\n"));
 				 return;
 	}
 
@@ -246,7 +252,6 @@ static void f_dma_init(f_dir dir){
 unsigned int f_do_track(unsigned cyl, f_dir dir){
 	//transfer command
 	unsigned char cmd;
-	puts((unsigned char*)("Start"));
 
 	//we're doing multitrack and keeping everything hardcoded to that to keep it simple
 	static const int flags = 0xC0;
@@ -258,22 +263,19 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 			cmd = WRITE_DATA | flags;
 			break;
 		default:
-			panic((unsigned char*)("f_do_track: invalid direction"));
+			panic((unsigned char*)("f_do_track: invalid direction\n"));
 			return 0;
 	}
-	puts((unsigned char*)("After switch"));
 
 	if(f_seek(cyl, 0)) return -1;
 	if(f_seek(cyl, 0)) return -1;
-	puts((unsigned char*)("Before loop"));
 	unsigned int i;
 	for(i = 0; i < 20; i++){
-		puts((unsigned char*)("Start loop"));
 		f_motor(f_motor_on);
 
 		f_dma_init(dir);
 
-		timer_wait(10);
+		//timer_wait(1);
 
 		f_writeCommand(cmd);	//Current direction
 		f_writeCommand(0);		//head
@@ -287,11 +289,10 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 
 		unsigned int j;
 		for(j = 0; j < 100; j++){
-			timer_wait(1);
+			//timer_wait(1);
 			irq_wait(6);
 		}
-		
-		puts((unsigned char*)("Reading data?"));
+
 		unsigned char st0, st1, st2, rcy, rhe, rse, bps;
 		st0 = f_readData();
 		st1 = f_readData();
@@ -357,7 +358,7 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 			puts((unsigned char*)("f_do_track: bad cylinder\n"));
 			error = 1;
 		}
-		if(bps != 0x2){
+		if(bps != 0x200){
 			puts((unsigned char*)("f_do_track: wanted 512b/sector, got "));
 			puts((unsigned char*)((1<<(bps+7))));
 			error = 1;
@@ -371,7 +372,7 @@ unsigned int f_do_track(unsigned cyl, f_dir dir){
 			return 0;
 		}
 		if(error>1){
-			panic((unsigned char*)("f_do_track: Not retrying."));
+			panic((unsigned char*)("f_do_track: Not retrying.\n"));
 			f_motor(f_motor_off);
 			return -2;
 		}
@@ -390,9 +391,4 @@ unsigned int f_write_track(unsigned cyl){
 	return f_do_track(cyl, f_dir_write);
 }
 
-void fdc_install(){
-	unsigned int x;
-	x = f_calibrate();
-	x++;
-}
 

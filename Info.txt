@@ -106,6 +106,13 @@ Senior Project Progress
 	Successfully have some pseudo commands working like a terminal. There are limits to this.
 	No file system. Issues with the FDC.
 	-8:00pm-
+5/8/13
+	-1:00pm-
+	Work on getting FDC reading to work at least
+	Finally found that the errors were in the interrupts.
+	Not sure if it's that the interrupts aren't triggering for the floppy disk or if they aren't being noticed
+	Hopefully I get more time to put into this in the future. I'd love to come back to it.
+	-5:00pm-
 
 
 

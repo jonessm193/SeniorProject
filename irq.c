@@ -90,7 +90,7 @@ void irq_install(){
 
 /* Each of the IRQ ISRs point to this function, rather than
 *  the 'fault_handler' in 'isrs.c'. The IRQ Controllers need
-*  to be told when you are done servicing them, so you need
+*  to be told when I'm done servicing them, so I need
 *  to send them an "End of Interrupt" command (0x20)*/
 void irq_handler(struct regs *r){
     //Blank function pointer

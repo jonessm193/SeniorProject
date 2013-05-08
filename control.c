@@ -24,8 +24,12 @@ void filedone(){
 }
 
 //Sets variable in kb.c to start reading characters to a file
-void filem(){
+void filew(){
 	pullChars = 1;
+}
+
+void filer(){
+	pullChars = 2;
 }
 
 //Goofy method to prove concept of the commands working
@@ -41,14 +45,31 @@ void faces(){
 void control_enterCommand(){
 	if(compare(cmdString, (unsigned char*) "clear")){
 		cls();
-	}else if(compare(cmdString, (unsigned char*)("filem"))){
-		filem();
+	}else if(compare(cmdString, (unsigned char*)("filew"))){
+		filew();
+	}else if(compare(cmdString, (unsigned char*)("filer"))){
+		filer();
+	}else if(compare(cmdString, (unsigned char*)("hello"))){
+		puts((unsigned char*)("HI!!\n"));
+	}else if(compare(cmdString, (unsigned char*)("flopp"))){
+		detectfloppy();
+	}else if(compare(cmdString, (unsigned char*)("-help"))){
+		puts((unsigned char*)("--------------------------------------------------------------\n"));
+		puts((unsigned char*)("Commands currently implemented:\n"));
+		puts((unsigned char*)("clear = Clears the screen\n"));
+		puts((unsigned char*)("hello = Says hi!!\n"));
+		puts((unsigned char*)("faces = Just for fun\n"));
+		puts((unsigned char*)("flopp = Find out what type of floppy we're on\n"));
+		puts((unsigned char*)("--------------------------------------------------------------\n"));
+		puts((unsigned char*)("Tried to get some simple file reading and writing commands.\n"));
+		puts((unsigned char*)("Maybe after some time I'll get a chance in later versions.\n"));
+		puts((unsigned char*)("--------------------------------------------------------------\n"));
 	}else if(cmdString[0] == 0){
-		puts((unsigned char*)("\n"));
+		puts((unsigned char*)("Type '-help' for assistance\n"));
 	}else if(compare(cmdString, (unsigned char*)("faces"))){
 		faces();
 	}else{
-		puts((unsigned char*)("Unknown command\n"));
+		puts((unsigned char*)("Unknown command. Try '-help'?\n"));
 	}
 	int i;
 	for(i = 0; i < 50; i++){
@@ -57,10 +78,16 @@ void control_enterCommand(){
 	count = 0;
 }
 
+//Calls to read files with the FDC, but for now it just prints something
+void readfile(){
+	f_read_track(1);
+	filedone();
+	control_enterCommand();
+}
+
 //Calls to write files with the FDC, but for now it just prints something
-void writefilem(char finput){
+void writefile(char input){
 	f_write_track(1);
-	puts((unsigned char*)("Derpa derpa derpa\n"));
 	filedone();
 	control_enterCommand();
 }
