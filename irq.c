@@ -99,7 +99,7 @@ void irq_handler(struct regs *r){
     /* Find out if we have a custom handler to run for this
     *  IRQ, and then finally, run it */
     handler = irq_routines[r->int_no - 32];
-    irqCurr = (unsigned int)(irq_routines[r->int_no - 32]);
+    irqCurr = (unsigned int)(r->int_no - 32);
     if (handler)
     {
         handler(r);

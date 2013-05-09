@@ -173,7 +173,7 @@ unsigned int f_seek(unsigned cyli, unsigned int head){
 
 		unsigned int j;
 		//puts((unsigned char*)("Checking for Interrupt f_seek\n"));
-		for(j = 0; j < 100; j++){
+		for(j = 0; j < 1000; j++){
 			//timer_wait(1);
 			irq_wait(6);
 		}

@@ -5,7 +5,7 @@
 /* These define our textpointer, our background and foreground
 *  colors (attributes), and x and y cursor coordinates */
 unsigned short *textmemptr;
-int attrib = 0x0F;
+int attrib = 0x05;
 int csr_x = 0, csr_y = 0;
 
 /* Scrolls the screen */
